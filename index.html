@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Book</title>
+
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-color:white ;
+        }
+
+        .container{
+           width: 500px;
+           margin: 40px auto;
+           padding: 10px;
+           border: 2px solid #56b047;
+           border-radius: 15px;
+        }
+
+        .heading-text{
+            font-size: 30px;
+            text-align: center;
+            margin: 25px;
+            font-weight:bold;
+            color: #56b047;
+        }
+
+        
+        .add-students{
+            display: block;
+            text-align: center;
+            margin: 10px auto;
+            padding: 7px;
+            width: 480px;
+            border: 2px solid #56b047;
+            border-radius: 10px;
+   
+        }
+        
+
+        .btn-container{
+            display: block;
+            margin: 10px auto;
+            width: fit-content;
+            
+        }
+
+        .button{
+         width: 180px;
+         padding: 7px;
+         margin: 12px;
+         border-radius: 10px;
+         border: none;
+         background-color: #56b047;
+         color: white;
+         cursor: pointer;
+         font-size: 20px;
+        }
+
+        .student-card{
+            width: 200px;
+            border: 2px solid #56b047;
+            border-radius: 15px;
+            padding: 6px;
+            margin: 15px auto;
+            font-size: 17px;
+            background-color:white;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="heading-text">Student Book</h1>
+        <div class="container-1">
+        <input type="text" id="add-student-1" class="add-students" placeholder="Enter Student Name">
+        <div class="btn-container">
+        <button class="button" onclick="toRemoveStudent()">Remove</button>
+        <button class="button" onclick="toAddStudent()">Add</button>
+       
+        </div>
+        </div>
+
+        <div id="list"> </div>
+
+    </div>
+
+
+    <script>
+         function getRandomEmoji() {
+            const emojis = ['❤','🧡','💛','💚','💙','💜','🤎','🖤','🤍','💕','💞','💗','💖','💝'];
+            const min = 0;
+            const max = emojis.length - 1;
+            const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            return emojis[randomIndex]
+        }
+        const students = [
+            "Saurabh",
+        ]
+        function loadStudents() {
+            const studentsContainer = document.getElementById("list")
+
+            studentsContainer.innerHTML = ""
+
+            for (let i = 0; i < students.length; i++) {
+                studentsContainer.innerHTML += `<div class='student-card'>  ${i + 1}) ${getRandomEmoji()} ${students[i]
+                    }</div>`;
+
+            }
+
+        }
+        loadStudents()
+        const studentInput = document.getElementById("add-student-1");
+        function toAddStudent(){
+            students.push(studentInput.value);
+            studentInput.value = "";
+            loadStudents();
+
+        }
+        function toRemoveStudent() {
+            
+            const studentIndex = students.indexOf(studentInput.value);
+            studentInput.value = "";
+            students.splice(studentIndex, 1);
+            loadStudents();
+        }
+    </script>
+
+</body>
+</html>
